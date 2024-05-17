@@ -43,7 +43,4 @@ fi
 sed -i "s/server-port=.*/server-port=$SERVER_PORT/" "/home/container/server.properties"
 sed -i "s/online-mode=.*/online-mode=false/" "/home/container/server.properties"
 
-container_id=$(cat /proc/self/cgroup | grep 'docker' | sed 's/^.*\///' | tail -n1)
-docker container label set $container_id servername="$SERVER_NAME"
-
 exec env ${PARSED}

@@ -7,5 +7,8 @@ USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
 
+ARG SERVER_NAME
+LABEL servername=$SERVER_NAME
+
 COPY        ./entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/bash", "/entrypoint.sh" ]
