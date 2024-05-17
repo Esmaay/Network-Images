@@ -7,7 +7,7 @@ USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
 
-ARG SERVER_NAME
+ENV SERVER_NAME="UNKNOWN"
 LABEL servername=$SERVER_NAME
 
 COPY        ./entrypoint.sh /entrypoint.sh
