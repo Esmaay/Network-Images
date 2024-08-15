@@ -89,6 +89,16 @@
       "field_type": "text"
     },
     {
+      "name": "Global Folder",
+      "description": "",
+      "env_variable": "GLOBAL_FOLDER",
+      "default_value": "",
+      "user_viewable": true,
+      "user_editable": false,
+      "rules": "string",
+      "field_type": "text"
+    },
+    {
       "name": "Server Group",
       "description": "",
       "env_variable": "SERVER_GROUP",
