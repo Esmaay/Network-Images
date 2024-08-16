@@ -22,6 +22,11 @@ PARSED=$(echo "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g' | eval echo "$(cat
 printf "\033[1m\033[33mcontainer@pterodactyl~ \033[0m%s\n" "$PARSED"
 # shellcheck disable=SC2086
 
+if [ -d "/home/container/plugins" ]; then
+    echo "Removing .jar files from /home/container/plugins"
+    find /home/container/plugins -maxdepth 1 -type f -name "*.jar" -exec rm -f {} \;
+fi
+
 wget -r -np -q -nH --cut-dirs=2 --reject index.html,index.html.tmp --accept "*.*" "http://172.18.0.7$GLOBAL_FOLDER/" &
 wait $!
 
