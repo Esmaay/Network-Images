@@ -45,6 +45,21 @@ else
     echo "TEMPLATES environment variable is not set."
 fi
 
+if [ -n "$SHUFFLE_TEMPLATES" ]; then
+    IFS=',' read -r -a templates <<<"$SHUFFLE_TEMPLATES"
+    template=${templates[$RANDOM % ${#templates[@]}]}
+
+    if [ -z "$template" ]; then
+        continue
+    fi
+
+    echo "Chose random template $template"
+
+    echo "Downloading template $template"
+    wget -r -np -q -nH --cut-dirs=2 --reject index.html,index.html.tmp "http://172.18.0.7$template/" &
+    wait $!
+fi
+
 if [[ "$GLOBAL_FOLDER" == *"spigot"* ]]; then
     sed -i "s/server-port=.*/server-port=$SERVER_PORT/" "/home/container/server.properties"
     sed -i "s/online-mode=.*/online-mode=false/" "/home/container/server.properties"
